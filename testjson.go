@@ -38,5 +38,5 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
 
 func main() {
     http.HandleFunc("/transaction", ReceiveTransaction)
-    log.Fatal(http.ListenAndServe(":8082", nil))
+    log.Fatal(http.ListenAndServe(":80", nil))
 }
