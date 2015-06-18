@@ -43,20 +43,27 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
         panic(err)
     }
 
+    bs, err := ioutil.ReadAll(resp.Body)
+    if err {
+       panic(err)
+    }
+    s
+    tr := string(bs)
+
     conn := pool.Get()
     defer conn.Close()
 
 
     tplaced := ParseDate(t.TimePlaced)
 
-    n1, err1 := conn.Do("ZADD", "transactions", tplaced.Unix(), req.Body )
+    n1, err1 := conn.Do("ZADD XX", "transactions", tplaced.Unix(), tr )
     if err1 != nil {
         panic(err1)
     }
 
     log.Println(n1)
 
-    n2, err2 := conn.Do("ZADD", fmt.Sprint("transactions:",t.UserId), tplaced.Unix(), req.Body )
+    n2, err2 := conn.Do("ZADD XX", fmt.Sprint("transactions:",t.UserId), tplaced.Unix(), tr )
     if err != nil {
         panic(err2)
     }
