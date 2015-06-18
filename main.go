@@ -38,17 +38,6 @@ var (
     redisPassword = flag.String("redisPassword", "", "")
 )
 
-type TransactionRecord struct {
-    UserId string
-    CurrencyFrom string 
-    CurrencyTo string 
-    AmountSell json.Number
-    AmountBuy json.Number
-    Rate json.Number
-    TimePlaced string
-    OriginatingCountry string
-}
-
 func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
     decoder := json.NewDecoder(req.Body)
     var t TransactionRecord   
