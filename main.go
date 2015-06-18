@@ -50,6 +50,8 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
     }
     tr := string(bs)
 
+    log.Println(tr)
+
     conn := pool.Get()
     defer conn.Close()
 
