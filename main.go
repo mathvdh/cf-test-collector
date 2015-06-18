@@ -44,13 +44,12 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
         panic(err)
     }
 
-    bs, err := ioutil.ReadAll(req.Body)
-    if err != nil {
-       panic(err)
-    }
-    tr := string(bs)
 
-    log.Println(tr)
+    encoded, err := json.Marshal(t)
+    if err != nil {
+        panic(err)
+    }
+    encoded_str = string(b)
 
     conn := pool.Get()
     defer conn.Close()
@@ -58,14 +57,14 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
 
     tplaced := ParseDate(t.TimePlaced)
 
-    n1, err1 := conn.Do("ZADD", "transactions", tplaced.Unix(), tr )
+    n1, err1 := conn.Do("ZADD", "transactions", tplaced.Unix(), encoded_str )
     if err1 != nil {
         panic(err1)
     }
 
     log.Println(n1)
 
-    n2, err2 := conn.Do("ZADD", fmt.Sprint("transactions:",t.UserId), tplaced.Unix(), tr )
+    n2, err2 := conn.Do("ZADD", fmt.Sprint("transactions:",t.UserId), tplaced.Unix(), encoded_str )
     if err != nil {
         panic(err2)
     }
