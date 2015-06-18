@@ -8,7 +8,6 @@ import (
     "time"
     "flag"
     "fmt"
-    "io/ioutil"
 )
 
 func newPool(server, password string) *redis.Pool {
@@ -49,7 +48,7 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
     if err != nil {
         panic(err)
     }
-    encoded_str = string(b)
+    encoded_str := string(encoded)
 
     conn := pool.Get()
     defer conn.Close()
