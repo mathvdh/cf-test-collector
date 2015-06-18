@@ -57,16 +57,14 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
         panic(err1)
     }
 
-    fmt.Println(n1)
+    log.Println(n1)
 
     n2, err2 := conn.Do("ZADD", fmt.Sprint("transactions:",t.UserId), tplaced.Unix(), req.Body )
     if err != nil {
         panic(err2)
     }
     
-    fmt.Println(n2)
-
-    
+    log.Println(n2)
 
     log.Println("***transaction***")
     log.Println(t.UserId)
