@@ -20,7 +20,7 @@ type TransactionRecord struct {
 }
 
 func (record *TransactionRecord) Log() {
-    s := reflect.ValueOf(&record).Elem()
+    s := reflect.ValueOf(record).Elem()
 
     log.Println("***transaction***")
     for i := 0; i < s.NumField(); i++ {
