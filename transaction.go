@@ -19,7 +19,7 @@ type TransactionRecord struct {
     OriginatingCountry string
 }
 
-func (record TransactionRecord) Log() {
+func (record *TransactionRecord) Log() {
     s := reflect.ValueOf(&record).Elem()
 
     log.Println("***transaction***")
@@ -30,7 +30,7 @@ func (record TransactionRecord) Log() {
     log.Println("*****************")
 }
 
-func (record TransactionRecord) FromJsonRequest(jsondata io.ReadCloser) {
+func (record *TransactionRecord) FromJsonRequest(jsondata io.ReadCloser) {
 
 	decoder := json.NewDecoder(jsondata)
     err := decoder.Decode(&record)
@@ -39,7 +39,7 @@ func (record TransactionRecord) FromJsonRequest(jsondata io.ReadCloser) {
     }
 }
 
-func (record TransactionRecord) ToJson() string {
+func (record *TransactionRecord) ToJson() string {
 	encoded, err := json.Marshal(record)
     if err != nil {
         panic(err)
@@ -48,7 +48,7 @@ func (record TransactionRecord) ToJson() string {
     return encoded_str
 }
 
-func (record TransactionRecord) ToRedis() {
+func (record *TransactionRecord) ToRedis() {
     conn := pool.Get()
     defer conn.Close()
 

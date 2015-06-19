@@ -10,7 +10,7 @@ import (
 
 func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
     
-    var t TransactionRecord
+    t:=new(TransactionRecord)
 
     t.FromJsonRequest(req.Body)
 
