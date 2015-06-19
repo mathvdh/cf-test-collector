@@ -14,6 +14,8 @@ func ReceiveTransaction(rw http.ResponseWriter, req *http.Request) {
 
     t.FromJsonRequest(req.Body)
 
+    t.Log()
+
     t.ToRedis()
 
     t.Log()
