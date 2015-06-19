@@ -5,8 +5,19 @@ import (
     "time"
     "strings"
     "unicode"
+    "encoding/json"
 )
 
+type TransactionRecord struct {
+    UserId string
+    CurrencyFrom string 
+    CurrencyTo string 
+    AmountSell json.Number
+    AmountBuy json.Number
+    Rate json.Number
+    TimePlaced string
+    OriginatingCountry string
+}
 
 var cnt int = 0
 
