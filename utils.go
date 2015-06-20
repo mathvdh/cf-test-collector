@@ -1,35 +1,37 @@
 package main
 
 import (
-    "fmt"
     "time"
     "strings"
     "unicode"
 )
 
 
-var cnt int = 0
 
-func monthToLower(r rune) rune {
-    retval := r
-    if (unicode.IsUpper(r) && cnt >= 1) {
-        retval=unicode.ToLower(r)
+func SanitizeDate(s string) string {
+    cnt := 0
+
+    mtlr := func(r rune) rune {
+        retval := r
+        if (unicode.IsUpper(r) && cnt >= 1) {
+            retval=unicode.ToLower(r)
+        }
+
+        if (unicode.IsLetter(r)) {
+            cnt = cnt + 1
+        }
+        
+        return retval
     }
 
-    if (unicode.IsLetter(r)) {
-        cnt = cnt + 1
-    }
-    
-    return retval
+    return strings.Map(mtlr, s)
 }
+
+
 
 func ParseDate(datestr string) time.Time {
 
-    cnt=0
-
-    newdatestr := strings.Map(monthToLower, datestr)
-    
-    fmt.Println(newdatestr)
+    newdatestr := SanitizeDate(datestr)
 
     tobj, err := time.Parse("02-Jan-06 15:04:05", newdatestr)
     if err != nil {
@@ -37,5 +39,4 @@ func ParseDate(datestr string) time.Time {
     }
 
     return tobj
-    
 }
