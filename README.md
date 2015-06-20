@@ -1,4 +1,6 @@
-# CurrencyFair test for Mathieu Van der Haegen #
+# CurrencyFair #
+
+## test for Mathieu Van der Haegen ##
 
 This is the code for the collector part of the test for CurrencyFair
 
