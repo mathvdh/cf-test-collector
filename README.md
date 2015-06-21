@@ -32,4 +32,4 @@ In `ReceiveTransaction` function :
 * We load it from the JSON of the request
 * We save it to redis
 
-We could add validation or can have validation offline.
+We could add validation but we prefer to proceed with validation later in cf-test-alertor
