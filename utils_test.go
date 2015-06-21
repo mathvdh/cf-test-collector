@@ -25,11 +25,11 @@ var expectedResults = map[string]string {
 	"24-JAN-15 10:27:44":  "24-Jan-15 10:27:44",
 }
 
-func TestMonthToLower(t *testing.T) {
+func TestSanitizeDate(t *testing.T) {
 	for k, v := range expectedResults {
-		res := MonthToLower(k)
+		res := SanitizeDate(k)
 		if res != v {
-    		t.Errorf("MonthToLower(%s) returned %s, expected %s", k, res, v)
+    		t.Errorf("SanitizeDate(%s) returned %s, expected %s", k, res, v)
 		} 
 	}
 }

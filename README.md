@@ -2,7 +2,7 @@
 
 ## cf-test-collector ##
 
-This is a server that will receive requests with POST data in JSON.
+This is an HTTP server that will receive requests with POST data in JSON.
 
 The JSON data will look like : 
 
@@ -32,4 +32,4 @@ In `ReceiveTransaction` function :
 * We load it from the JSON of the request
 * We save it to redis
 
-We could add validation but we prefer to proceed with validation later in cf-test-alertor
+We could add validation but we prefer to proceed with validation (and other) later in [cf-test-alertor](https://github.com/mathvdh/cf-test-alertor) 

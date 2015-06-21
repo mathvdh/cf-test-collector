@@ -5,7 +5,7 @@ import (
 	"io"
 	"reflect"
 	"bytes"
-	"log"
+	// "log"
 )
 
 
@@ -37,12 +37,12 @@ func TestTransactionRecordFromJsonRequest(t *testing.T) {
 					"timePlaced" : "24-JAN-15 10:27:44", 
 					"originatingCountry" : "FR"}`
 
-	log.Println(json_ok)
+	// log.Println(json_ok)
 
 
 	body := nopCloser{bytes.NewBufferString(json_ok)}
 
-	log.Println(body)
+	// log.Println(body)
 	
 	transaction_json:=new(TransactionRecord)
 	transaction_json.FromJsonRequest(body)
