@@ -6,7 +6,7 @@ This is an HTTP server that will receive requests with POST data in JSON.
 
 The JSON data will look like : 
 
-```
+```JSON
 {"userId": "134256",
 	"currencyFrom": "EUR", 
 	"currencyTo": "GBP", 
